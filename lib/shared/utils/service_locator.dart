@@ -5,6 +5,7 @@ import 'package:plant_app/features/home/domain/repositories/home_repository.dart
 import 'package:plant_app/features/home/domain/usecases/get_categories.dart';
 import 'package:plant_app/features/home/domain/usecases/get_questions.dart';
 import 'package:plant_app/features/home/presentation/cubit/home_cubit.dart';
+import 'package:plant_app/features/onboarding/presentation/controllers/onboarding_controller.dart';
 
 import '../../core/network/api_manager.dart';
 import '../../core/network/connectivity_manager.dart';
@@ -45,19 +46,13 @@ abstract class ServiceLocator {
       ..registerLazySingleton(() => GetCategories(locator()));
 
     // Register controllers
-    locator.registerLazySingleton(() => HomeController(locator(), locator()));
-    locator.registerLazySingleton(
-      () => DiagnoseController(locator(), locator()),
-    );
-    locator.registerLazySingleton(
-      () => ScanPlantController(locator(), locator()),
-    );
-    locator.registerLazySingleton(
-      () => MyGardenController(locator(), locator()),
-    );
-    locator.registerLazySingleton(
-      () => ProfileController(locator(), locator()),
-    );
+    locator
+      ..registerLazySingleton(() => OnboardingController(locator(), locator()))
+      ..registerLazySingleton(() => HomeController(locator(), locator()))
+      ..registerLazySingleton(() => DiagnoseController(locator(), locator()))
+      ..registerLazySingleton(() => ScanPlantController(locator(), locator()))
+      ..registerLazySingleton(() => MyGardenController(locator(), locator()))
+      ..registerLazySingleton(() => ProfileController(locator(), locator()));
 
     // Register cubits
     locator.registerLazySingleton(() => HomeCubit(locator(), locator()));
