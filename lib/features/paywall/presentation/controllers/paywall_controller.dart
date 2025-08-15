@@ -1,41 +1,34 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:plant_app/features/paywall/domain/entities/premium_feature.dart';
-import 'package:plant_app/gen/assets.gen.dart';
 
 import '../../../../core/presentation/controller.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../../domain/entities/premium_feature.dart';
+import '../../domain/entities/subscription_plan.dart';
+import '../cubit/paywall_cubit.dart';
 
 class PaywallController extends Controller<Object> {
   PaywallController(super.logger, super.popupManager);
 
-  late final AuthCubit _authCubit;
+  late AuthCubit _authCubit;
+  late PaywallCubit _paywallCubit;
 
-   // Just a mock data until we have a real data.
-  List<PremiumFeature> premiumFeatures = [
-    PremiumFeature(
-      title: 'Unlimited',
-      subTitle: 'Plant Identify',
-      iconUri: Assets.icons.paywall.unlimitedIcon,
-    ),
-    PremiumFeature(
-      title: 'Faster',
-      subTitle: 'Process',
-      iconUri: Assets.icons.paywall.fasterIcon,
-    ),
-    PremiumFeature(
-      title: 'Better',
-      subTitle: 'Results',
-      iconUri: Assets.icons.paywall.betterResultsIcon,
-    ),
-  ];
+  List<PremiumFeature> get premiumFeatures => _paywallCubit.premiumFeatures;
+  List<SubscriptionPlan> get subscriptions => _paywallCubit.subscriptions;
+
+  SubscriptionPlan get selectedPlan => _paywallCubit.selectedPlan;
 
   @override
   void onStart() {
     super.onStart();
     _authCubit = context.read<AuthCubit>();
+    _paywallCubit = context.read<PaywallCubit>();
   }
 
   void setOnboardingSeen() {
     _authCubit.setOnboardingSeen();
+  }
+
+  void onSubscriptionTap(SubscriptionPlan subscription) {
+    _paywallCubit.onSubscriptionPlanChanged(subscription);
   }
 }

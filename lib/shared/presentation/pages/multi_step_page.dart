@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/shared/presentation/pages/base_page.dart';
-import 'package:plant_app/shared/theme/app_colors.dart';
-import 'package:plant_app/shared/theme/app_sizes.dart';
-import 'package:plant_app/shared/utils/build_context_ext.dart';
+
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
+import '../widgets/primary_button.dart';
+import 'base_page.dart';
 
 class MultiStepPage extends StatefulWidget {
   const MultiStepPage({
@@ -96,26 +97,9 @@ class _MultiStepPageState extends State<MultiStepPage> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppWidths.w20),
-                child: SizedBox(
-                  height: AppHeights.h56,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: AppHeights.h16),
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppHeights.h12),
-                      ),
-                    ),
-                    onPressed: _goNext,
-                    child: Text(
-                      widget.buttonTexts[_currentIndex],
-                      style: context.textTheme.displayMedium?.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ),
+                child: PrimaryButton(
+                  text: widget.buttonTexts[_currentIndex],
+                  onPressed: _goNext,
                 ),
               ),
               SizedBox(height: AppHeights.h16),

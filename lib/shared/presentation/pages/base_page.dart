@@ -34,6 +34,7 @@ class BasePage extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: overlay,
       child: Scaffold(
+        backgroundColor: backgroundColor,
         appBar: title != null ? _buildAppBar(overlay) : null,
         body: _buildBody(),
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
