@@ -117,7 +117,7 @@ class _Questions extends SubView<HomeController> {
       case HomeQuestionsLoading():
         return _QuestionsPlaceholder();
       case HomeQuestionsError():
-        return const Center(child: Text('Error'));
+        return const SizedBox.shrink();
       default:
         final questions = state is HomeQuestionsLoaded
             ? state.questions
@@ -203,7 +203,7 @@ class _Categories extends SubView<HomeController> {
       case HomeCategoriesLoading():
         return _CategoriesPlaceholder();
       case HomeCategoriesError():
-        return const Center(child: Text('Error'));
+        return const SizedBox.shrink();
       default:
         final categories = state is HomeCategoriesLoaded
             ? state.categories
