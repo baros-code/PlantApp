@@ -7,7 +7,7 @@ import 'package:plant_app/features/diagnose/presentation/controllers/diagnose_co
 import 'package:plant_app/features/garden/presentation/controllers/my_garden_controller.dart';
 import 'package:plant_app/features/home/presentation/controllers/home_controller.dart';
 import 'package:plant_app/features/profile/presentation/controllers/profile_controller.dart';
-import 'package:plant_app/features/qr_scan/controllers/qr_scan_controller.dart';
+import 'package:plant_app/features/scan_plant/controllers/qr_scan_controller.dart';
 
 final locator = GetIt.instance;
 
@@ -27,7 +27,9 @@ abstract class ServiceLocator {
     locator.registerLazySingleton(
       () => DiagnoseController(locator(), locator()),
     );
-    locator.registerLazySingleton(() => QrScanController(locator(), locator()));
+    locator.registerLazySingleton(
+      () => ScanPlantController(locator(), locator()),
+    );
     locator.registerLazySingleton(
       () => MyGardenController(locator(), locator()),
     );

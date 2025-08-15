@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/core/presentation/controlled_view.dart';
 import 'package:plant_app/core/presentation/sub_view.dart';
-import 'package:plant_app/features/qr_scan/controllers/qr_scan_controller.dart';
+import 'package:plant_app/features/scan_plant/controllers/qr_scan_controller.dart';
 
-class QrScanPage extends ControlledView<QrScanController, Object> {
-  QrScanPage({super.key, super.params});
+class ScanPlantPage extends ControlledView<ScanPlantController, Object> {
+  ScanPlantPage({super.key, super.params});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +12,11 @@ class QrScanPage extends ControlledView<QrScanController, Object> {
   }
 }
 
-class _QrScanSubView extends SubView<QrScanController> {
+class _QrScanSubView extends SubView<ScanPlantController> {
   _QrScanSubView();
 
   @override
-  Widget buildView(BuildContext context, QrScanController controller) {
+  Widget buildView(BuildContext context, ScanPlantController controller) {
     return const Center(child: Text('QR Scan'));
   }
 }

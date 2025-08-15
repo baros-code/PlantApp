@@ -4,7 +4,7 @@ import 'package:plant_app/features/diagnose/presentation/pages/diagnose_page.dar
 import 'package:plant_app/features/garden/presentation/pages/my_garden_page.dart';
 import 'package:plant_app/features/home/presentation/pages/home_page.dart';
 import 'package:plant_app/features/profile/presentation/pages/profile_page.dart';
-import 'package:plant_app/features/qr_scan/presentation/pages/qr_scan_page.dart';
+import 'package:plant_app/features/scan_plant/presentation/pages/qr_scan_page.dart';
 import 'package:plant_app/shared/presentation/pages/main_page.dart';
 
 class AppRouter {
@@ -47,7 +47,7 @@ class AppRouter {
                 GoRoute(
                   path: AppRoute.qr.path,
                   name: AppRoute.qr.routeName,
-                  builder: (context, state) => QrScanPage(),
+                  builder: (context, state) => ScanPlantPage(),
                 ),
               ],
             ),
