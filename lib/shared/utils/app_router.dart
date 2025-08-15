@@ -1,80 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/features/diagnose/presentation/pages/diagnose_page.dart';
-import 'package:plant_app/features/garden/presentation/pages/my_garden_page.dart';
-import 'package:plant_app/features/home/presentation/pages/home_page.dart';
-import 'package:plant_app/features/profile/presentation/pages/profile_page.dart';
-import 'package:plant_app/features/scan_plant/presentation/pages/qr_scan_page.dart';
-import 'package:plant_app/shared/presentation/pages/main_page.dart';
+
+import '../../features/diagnose/presentation/pages/diagnose_page.dart';
+import '../../features/garden/presentation/pages/my_garden_page.dart';
+import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/scan_plant/presentation/pages/scan_plant_page.dart';
+import '../presentation/pages/main_page.dart';
 
 class AppRouter {
-  static GoRouter create() {
-    final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+  static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
-    final router = GoRouter(
-      navigatorKey: rootNavigatorKey,
-      initialLocation: AppRoute.home.path,
-      routes: [
-        // Bottom Navigation Bar
-        StatefulShellRoute.indexedStack(
-          parentNavigatorKey: rootNavigatorKey,
-          builder: (context, state, navigationShell) {
-            return MainPage(child: navigationShell);
-          },
-          branches: [
-            // Home
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: AppRoute.home.path,
-                  name: AppRoute.home.routeName,
-                  builder: (context, state) => HomePage(),
-                ),
-              ],
-            ),
-            // Diagnose
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: AppRoute.diagnose.path,
-                  name: AppRoute.diagnose.routeName,
-                  builder: (context, state) => DiagnosePage(),
-                ),
-              ],
-            ),
-            // My Garden
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: AppRoute.garden.path,
-                  name: AppRoute.garden.routeName,
-                  builder: (context, state) => MyGardenPage(),
-                ),
-              ],
-            ),
-            // Profile
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: AppRoute.profile.path,
-                  name: AppRoute.profile.routeName,
-                  builder: (context, state) => ProfilePage(),
-                ),
-              ],
-            ),
-          ],
-        ),
-        // Scan Plant
-        GoRoute(
-          parentNavigatorKey: rootNavigatorKey,
-          path: AppRoute.scanPlant.path,
-          name: AppRoute.scanPlant.routeName,
-          builder: (context, state) => ScanPlantPage(),
-        ),
-      ],
-    );
-    return router;
-  }
+  static GoRouter get router => _router;
+
+  static final GoRouter _router = GoRouter(
+    navigatorKey: rootNavigatorKey,
+    initialLocation: AppRoute.home.path,
+    routes: [
+      // Bottom Navigation Bar
+      StatefulShellRoute.indexedStack(
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state, navigationShell) {
+          return MainPage(child: navigationShell);
+        },
+        branches: [
+          // Home
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.home.path,
+                name: AppRoute.home.routeName,
+                builder: (context, state) => HomePage(),
+              ),
+            ],
+          ),
+          // Diagnose
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.diagnose.path,
+                name: AppRoute.diagnose.routeName,
+                builder: (context, state) => DiagnosePage(),
+              ),
+            ],
+          ),
+          // My Garden
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.garden.path,
+                name: AppRoute.garden.routeName,
+                builder: (context, state) => MyGardenPage(),
+              ),
+            ],
+          ),
+          // Profile
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.profile.path,
+                name: AppRoute.profile.routeName,
+                builder: (context, state) => ProfilePage(),
+              ),
+            ],
+          ),
+        ],
+      ),
+      // Scan Plant
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: AppRoute.scanPlant.path,
+        name: AppRoute.scanPlant.routeName,
+        builder: (context, state) => ScanPlantPage(),
+      ),
+    ],
+  );
 }
 
 enum AppRoute {

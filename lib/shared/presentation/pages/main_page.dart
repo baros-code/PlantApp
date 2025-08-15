@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/shared/theme/app_colors.dart';
-import 'package:plant_app/shared/theme/app_sizes.dart';
-import 'package:plant_app/shared/utils/app_router.dart';
+
+import '../../../gen/assets.gen.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
+import '../../utils/app_router.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key, required this.child});
@@ -17,18 +20,27 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: child,
       bottomNavigationBar: BottomAppBar(
+        padding: EdgeInsets.zero,
+        height: AppHeights.h80,
         shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        child: SizedBox(
-          height: 64,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: AppColors.borderColor.withValues(alpha: 0.1),
+                width: AppWidths.w1,
+              ),
+            ),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _NavItem(
                 label: AppRoute.home.label,
-                icon: Icons.home_outlined,
+                icon: Assets.icons.home.homeIcon,
                 selected: child.currentIndex == indexHome,
                 onTap: () => child.goBranch(
                   indexHome,
@@ -37,17 +49,17 @@ class MainPage extends StatelessWidget {
               ),
               _NavItem(
                 label: AppRoute.diagnose.label,
-                icon: Icons.health_and_safety_outlined,
+                icon: Assets.icons.home.diagnoseIcon,
                 selected: child.currentIndex == indexDiagnose,
                 onTap: () => child.goBranch(
                   indexDiagnose,
                   initialLocation: child.currentIndex == indexDiagnose,
                 ),
               ),
-              const SizedBox(width: 56),
+              SizedBox(width: AppWidths.w56),
               _NavItem(
                 label: AppRoute.garden.label,
-                icon: Icons.local_florist_outlined,
+                icon: Assets.icons.home.myGardenIcon,
                 selected: child.currentIndex == indexGarden,
                 onTap: () => child.goBranch(
                   indexGarden,
@@ -56,7 +68,7 @@ class MainPage extends StatelessWidget {
               ),
               _NavItem(
                 label: AppRoute.profile.label,
-                icon: Icons.person_outline,
+                icon: Assets.icons.home.profileIcon,
                 selected: child.currentIndex == indexProfile,
                 onTap: () => child.goBranch(
                   indexProfile,
@@ -68,9 +80,34 @@ class MainPage extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(AppRoute.scanPlant.path),
-        child: const Icon(Icons.qr_code),
+      floatingActionButton: _ScanQRButton(),
+    );
+  }
+}
+
+class _ScanQRButton extends StatelessWidget {
+  const _ScanQRButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push(AppRoute.scanPlant.path),
+      child: Container(
+        padding: EdgeInsets.all(AppSizes.p20),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primary,
+          border: Border.all(
+            color: AppColors.white.withValues(alpha: .24),
+            width: AppWidths.w4,
+          ),
+        ),
+        child: SvgPicture.asset(
+          Assets.icons.home.scanIcon,
+          colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+          width: AppWidths.w26,
+          height: AppHeights.h26,
+        ),
       ),
     );
   }
@@ -85,28 +122,33 @@ class _NavItem extends StatelessWidget {
   });
 
   final String label;
-  final IconData icon;
+  final String icon;
   final bool selected;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? AppColors.primary : AppColors.textSecondary;
+    final color = selected ? AppColors.primary : AppColors.iconSecondary;
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: AppSizes.p72,
+        width: AppWidths.w74,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: color),
-            SizedBox(height: AppSizes.p4),
+            SvgPicture.asset(
+              icon,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+              width: AppWidths.w26,
+              height: AppHeights.h26,
+            ),
+            SizedBox(height: AppHeights.h5),
             Text(
               label,
-              style: Theme.of(
-                context,
-              ).textTheme.labelSmall?.copyWith(color: color),
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: selected ? AppColors.primary : AppColors.textSecondary,
+              ),
             ),
           ],
         ),

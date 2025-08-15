@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/core/presentation/controlled_view.dart';
 import 'package:plant_app/core/presentation/sub_view.dart';
-import 'package:plant_app/features/scan_plant/controllers/qr_scan_controller.dart';
+import 'package:plant_app/features/scan_plant/controllers/scan_plant_controller.dart';
 
 class ScanPlantPage extends ControlledView<ScanPlantController, Object> {
   ScanPlantPage({super.key, super.params});
