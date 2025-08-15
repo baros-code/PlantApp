@@ -60,11 +60,14 @@ class _HomeHeader extends SubView<HomeController> {
   Widget buildView(BuildContext context, HomeController controller) {
     return Stack(
       children: [
-        Image.asset(
-          Assets.images.home.homeHeader.path,
-          // This is actually the full width of the screen.
-          width: AppWidths.w360,
-          height: AppHeights.h175,
+        Positioned(
+          bottom: -AppHeights.h10,
+          child: Image.asset(
+            Assets.images.home.homeHeader.path,
+            // This is actually the full width of the screen.
+            width: AppWidths.w360,
+            height: AppHeights.h200,
+          ),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
@@ -88,6 +91,8 @@ class _HomeHeader extends SubView<HomeController> {
                 hintText: 'Search for plants',
                 onSearchChanged: controller.onSearchChanged,
               ),
+              // This is crucial for background image to be like in the design.
+              SizedBox(height: AppHeights.h16),
             ],
           ),
         ),
