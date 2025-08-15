@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plant_app/shared/theme/app_theme.dart';
+import 'package:plant_app/shared/utils/app_router.dart';
 
 import 'shared/utils/service_locator.dart';
 
@@ -14,14 +15,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = AppRouter.create();
     return ScreenUtilInit(
       designSize: const Size(360, 800),
-      builder: (context, child) => MaterialApp(
+      builder: (context, child) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system,
-        home: Scaffold(body: Center(child: Text('Hello World!'))),
+        routerConfig: router,
       ),
     );
   }
