@@ -15,6 +15,7 @@ class AppRouter {
       navigatorKey: rootNavigatorKey,
       initialLocation: AppRoute.home.path,
       routes: [
+        // Bottom Navigation Bar
         StatefulShellRoute.indexedStack(
           parentNavigatorKey: rootNavigatorKey,
           builder: (context, state, navigationShell) {
@@ -41,16 +42,6 @@ class AppRouter {
                 ),
               ],
             ),
-            // QRScan
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: AppRoute.qr.path,
-                  name: AppRoute.qr.routeName,
-                  builder: (context, state) => ScanPlantPage(),
-                ),
-              ],
-            ),
             // My Garden
             StatefulShellBranch(
               routes: [
@@ -73,6 +64,13 @@ class AppRouter {
             ),
           ],
         ),
+        // Scan Plant
+        GoRoute(
+          parentNavigatorKey: rootNavigatorKey,
+          path: AppRoute.scanPlant.path,
+          name: AppRoute.scanPlant.routeName,
+          builder: (context, state) => ScanPlantPage(),
+        ),
       ],
     );
     return router;
@@ -80,17 +78,17 @@ class AppRouter {
 }
 
 enum AppRoute {
-  home('/home', 'home', 0, 'Home'),
-  diagnose('/diagnose', 'diagnose', 1, 'Diagnose'),
-  qr('/qr', 'qr', 2, 'QR'),
-  garden('/garden', 'garden', 3, 'My Garden'),
-  profile('/profile', 'profile', 4, 'Profile');
+  home('/home', 'home', 'Home', tabIndex: 0),
+  diagnose('/diagnose', 'diagnose', 'Diagnose', tabIndex: 1),
+  garden('/garden', 'garden', 'My Garden', tabIndex: 2),
+  profile('/profile', 'profile', 'Profile', tabIndex: 3),
+  scanPlant('/scan_plant', 'scan_plant', 'Scan Plant');
 
-  const AppRoute(this.path, this.routeName, this.tabIndex, this.label);
+  const AppRoute(this.path, this.routeName, this.label, {this.tabIndex});
 
   final String path;
   final String routeName;
-  final int tabIndex;
+  final int? tabIndex;
   final String label;
 
   static AppRoute? fromPath(String path) {

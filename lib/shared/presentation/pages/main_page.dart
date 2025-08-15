@@ -9,10 +9,10 @@ class MainPage extends StatelessWidget {
 
   final StatefulNavigationShell child;
 
-  static final int indexHome = AppRoute.home.tabIndex;
-  static final int indexDiagnose = AppRoute.diagnose.tabIndex;
-  static final int indexGarden = AppRoute.garden.tabIndex;
-  static final int indexProfile = AppRoute.profile.tabIndex;
+  static final int indexHome = AppRoute.home.tabIndex!;
+  static final int indexDiagnose = AppRoute.diagnose.tabIndex!;
+  static final int indexGarden = AppRoute.garden.tabIndex!;
+  static final int indexProfile = AppRoute.profile.tabIndex!;
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +69,7 @@ class MainPage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => child.goBranch(
-          AppRoute.qr.tabIndex,
-          initialLocation: child.currentIndex == AppRoute.qr.tabIndex,
-        ),
+        onPressed: () => context.push(AppRoute.scanPlant.path),
         child: const Icon(Icons.qr_code),
       ),
     );
