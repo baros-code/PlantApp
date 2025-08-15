@@ -43,6 +43,7 @@ class _HomeView extends SubView<HomeController> {
                 _Questions(),
                 SizedBox(height: AppHeights.h24),
                 _Categories(),
+                SizedBox(height: AppHeights.h24),
               ],
             ),
           ),
