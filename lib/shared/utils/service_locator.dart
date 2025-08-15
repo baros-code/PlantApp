@@ -14,6 +14,7 @@ import 'package:plant_app/features/home/domain/usecases/get_questions.dart';
 import 'package:plant_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:plant_app/features/onboarding/presentation/controllers/onboarding_controller.dart';
 import 'package:plant_app/features/paywall/presentation/controllers/paywall_controller.dart';
+import 'package:plant_app/features/paywall/presentation/cubit/paywall_cubit.dart';
 
 import '../../core/network/api_manager.dart';
 import '../../core/network/connectivity_manager.dart';
@@ -75,5 +76,6 @@ abstract class ServiceLocator {
     // Register cubits
     locator.registerLazySingleton(() => AuthCubit(locator(), locator()));
     locator.registerLazySingleton(() => HomeCubit(locator(), locator()));
+    locator.registerLazySingleton(PaywallCubit.new);
   }
 }

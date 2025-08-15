@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
+
 import 'core/network/api_manager.dart';
 import 'core/utils/logger.dart';
+import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
-import 'shared/utils/app_constants.dart';
-
+import 'features/paywall/presentation/cubit/paywall_cubit.dart';
 import 'shared/theme/app_theme.dart';
+import 'shared/utils/app_constants.dart';
 import 'shared/utils/app_router.dart';
 import 'shared/utils/service_locator.dart';
 
@@ -63,6 +64,7 @@ List<BlocProvider> _getCubitProviders() {
   return [
     BlocProvider<AuthCubit>(create: (context) => locator<AuthCubit>()),
     BlocProvider<HomeCubit>(create: (context) => locator<HomeCubit>()),
+    BlocProvider<PaywallCubit>(create: (context) => locator<PaywallCubit>()),
   ];
 }
 

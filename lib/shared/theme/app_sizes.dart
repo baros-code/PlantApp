@@ -35,6 +35,7 @@ class AppWidths {
 
   static double get w0_5 => 0.5.w;
   static double get w1 => 1.w;
+  static double get w1_5 => 1.5.w;
   static double get w2 => 2.w;
   static double get w4 => 4.w;
   static double get w6 => 6.w;
@@ -61,6 +62,7 @@ class AppWidths {
   static double get w132 => 132.w;
   static double get w138 => 138.w;
   static double get w152 => 152.w;
+  static double get w155 => 155.w;
   static double get w212 => 212.w;
   static double get w240 => 240.w;
   static double get w300 => 300.w;
@@ -107,6 +109,7 @@ class AppHeights {
   static double get h80 => 80.h;
   static double get h100 => 100.h;
   static double get h120 => 120.h;
+  static double get h124 => 124.h;
   static double get h140 => 140.h;
   static double get h152 => 152.h;
   static double get h160 => 160.h;
@@ -116,6 +119,9 @@ class AppHeights {
   static double get h200 => 200.h;
   static double get h220 => 220.h;
   static double get h240 => 240.h;
+  static double get h256 => 256.h;
+  static double get h276 => 276.h;
+  static double get h300 => 300.h;
   static double get h500 => 500.h;
 }
 
@@ -127,6 +133,7 @@ class AppFontSizes {
   static double get size4 => 4.sp;
   static double get size6 => 6.sp;
   static double get size8 => 8.sp;
+  static double get size9 => 9.sp;
   static double get size10 => 10.sp;
   static double get size11 => 11.sp;
   static double get size12 => 12.sp;
@@ -140,6 +147,7 @@ class AppFontSizes {
   static double get size22 => 22.sp;
   static double get size24 => 24.sp;
   static double get size26 => 26.sp;
+  static double get size27 => 27.sp;
   static double get size28 => 28.sp;
   static double get size30 => 30.sp;
   static double get size32 => 32.sp;
