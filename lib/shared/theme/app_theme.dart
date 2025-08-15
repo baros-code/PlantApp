@@ -50,6 +50,7 @@ class AppTheme {
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.white,
     ),
+    cardTheme: CardThemeData(color: AppColors.white),
   );
 
   static final dark = ThemeData(
@@ -94,6 +95,7 @@ class AppTheme {
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.white,
     ),
+    cardTheme: CardThemeData(color: AppColors.black),
   );
 
   static TextTheme _getTextTheme(Color textColor) => TextTheme(

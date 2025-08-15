@@ -36,7 +36,18 @@ class QuestionCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(imageUrl: imageUri, fit: BoxFit.cover),
+              CachedNetworkImage(
+                imageUrl: imageUri,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => Card(
+                  child: Center(
+                    child: Icon(
+                      Icons.refresh,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
               _TitleText(title),
             ],
           ),
