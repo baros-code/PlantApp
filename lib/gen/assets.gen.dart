@@ -78,6 +78,10 @@ class $AssetsIconsHomeGen {
 class $AssetsIconsPaywallGen {
   const $AssetsIconsPaywallGen();
 
+  /// File path: assets/icons/paywall/better_results_icon.svg
+  String get betterResultsIcon =>
+      'assets/icons/paywall/better_results_icon.svg';
+
   /// File path: assets/icons/paywall/close_icon.svg
   String get closeIcon => 'assets/icons/paywall/close_icon.svg';
 
@@ -92,6 +96,7 @@ class $AssetsIconsPaywallGen {
 
   /// List of all assets
   List<String> get values => [
+    betterResultsIcon,
     closeIcon,
     detailedIcon,
     fasterIcon,

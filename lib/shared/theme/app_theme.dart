@@ -110,8 +110,9 @@ class AppTheme {
       color: textColor,
     ),
     headlineSmall: TextStyle().copyWith(
+      height: AppHeights.h24 / AppFontSizes.size20,
       fontSize: AppFontSizes.size20,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       color: textColor,
     ),
     // Title styles

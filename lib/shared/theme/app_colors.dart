@@ -26,4 +26,5 @@ class AppColors {
   static const premiumCardSubtitleColorSecond = Color(0xFFFFDE9C);
   static const premiumCardArrowIconColor = Color(0xFFD0B070);
   static const pageDotActiveColor = Color(0xFF13231B);
+  static const paywallBgColor = Color(0xFF101E17);
 }

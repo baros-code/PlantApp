@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/shared/presentation/pages/base_page.dart';
 
 import '../../../../core/presentation/controlled_view.dart';
 import '../../../../core/presentation/sub_view.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../shared/presentation/pages/base_page.dart';
+import '../../../../shared/presentation/widgets/custom_close_button.dart';
+import '../../../../shared/theme/app_colors.dart';
+import '../../../../shared/theme/app_sizes.dart';
+import '../../../../shared/utils/build_context_ext.dart';
+import '../../domain/entities/premium_feature.dart';
 import '../controllers/paywall_controller.dart';
+import '../widgets/feature_card.dart';
 
 class PaywallPage extends ControlledView<PaywallController, Object> {
   PaywallPage({super.key, super.params});
@@ -16,16 +23,121 @@ class PaywallPage extends ControlledView<PaywallController, Object> {
           controller.setOnboardingSeen();
         }
       },
-      child: BasePage(body: _PaywallSubView()),
+      child: BasePage(
+        appBarBackgroundColor: AppColors.paywallBgColor,
+        backgroundColor: AppColors.paywallBgColor,
+        body: _PaywallView(),
+      ),
     );
   }
 }
 
-class _PaywallSubView extends SubView<PaywallController> {
-  _PaywallSubView();
+class _PaywallView extends SubView<PaywallController> {
+  _PaywallView();
 
   @override
   Widget buildView(BuildContext context, PaywallController controller) {
-    return const Center(child: Text('Paywall'));
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Image.asset(Assets.images.paywall.paywallBg.path),
+        Positioned(
+          top: AppHeights.h14,
+          right: AppWidths.w20,
+          child: CustomCloseButton(onTap: controller.setOnboardingSeen),
+        ),
+        Positioned(
+          left: AppWidths.w20,
+          top: AppHeights.h276,
+          right: AppWidths.w20,
+          child: _PremiumSection(),
+        ),
+      ],
+    );
+  }
+}
+
+class _PremiumSection extends SubView<PaywallController> {
+  _PremiumSection();
+
+  @override
+  Widget buildView(BuildContext context, PaywallController controller) {
+    final features = controller.premiumFeatures;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _Header(),
+        SizedBox(height: AppHeights.h24),
+        _FeaturesSection(features),
+        SizedBox(height: AppHeights.h24),
+      ],
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              'PlantApp',
+              style: context.textTheme.headlineLarge?.copyWith(
+                fontSize: AppFontSizes.size30,
+                color: AppColors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(width: AppWidths.w6),
+            Text(
+              'Premium',
+              style: context.textTheme.headlineLarge?.copyWith(
+                fontSize: AppFontSizes.size27,
+                color: AppColors.white,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ],
+        ),
+        Text(
+          'Access All Features',
+          style: context.textTheme.displayMedium?.copyWith(
+            color: AppColors.white.withValues(alpha: 0.7),
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _FeaturesSection extends StatelessWidget {
+  const _FeaturesSection(this.features);
+
+  final List<PremiumFeature> features;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppHeights.h124,
+      child: ListView.builder(
+        physics: const ClampingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: features.length,
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.only(right: AppWidths.w10),
+          child: FeatureCard(
+            title: features[index].title,
+            subTitle: features[index].subTitle,
+            iconUri: features[index].iconUri,
+          ),
+        ),
+      ),
+    );
   }
 }
