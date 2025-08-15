@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/category_card.dart';
-import '../widgets/premium_offer_card.dart';
-import '../widgets/question_card.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/presentation/controlled_view.dart';
 import '../../../../core/presentation/sub_view.dart';
@@ -13,6 +11,9 @@ import '../../../../shared/theme/app_sizes.dart';
 import '../../../../shared/utils/build_context_ext.dart';
 import '../controllers/home_controller.dart';
 import '../cubit/home_cubit.dart';
+import '../widgets/category_card.dart';
+import '../widgets/premium_offer_card.dart';
+import '../widgets/question_card.dart';
 
 class HomePage extends ControlledView<HomeController, Object> {
   HomePage({super.key, super.params});
@@ -113,30 +114,70 @@ class _Questions extends SubView<HomeController> {
       case HomeInitial():
         return const SizedBox.shrink();
       case HomeQuestionsLoading():
-        return const Center(child: CircularProgressIndicator());
+        return _QuestionsPlaceholder();
       case HomeQuestionsError():
         return const Center(child: Text('Error'));
       default:
         final questions = state is HomeQuestionsLoaded
             ? state.questions
             : controller.questions;
-        return SizedBox(
-          height: AppHeights.h164,
-          child: ListView.builder(
-            physics: const ClampingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: questions.length,
-            itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.only(right: AppWidths.w10),
-              child: QuestionCard(
-                title: questions[index].title,
-                imageUri: questions[index].imageUri,
-                onTap: () => controller.onQuestionTap(questions[index]),
+        return questions.isEmpty
+            ? _QuestionsPlaceholder()
+            : SizedBox(
+                height: AppHeights.h164,
+                child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: questions.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: EdgeInsets.only(right: AppWidths.w10),
+                    child: QuestionCard(
+                      title: questions[index].title,
+                      imageUri: questions[index].imageUri,
+                      onTap: () => controller.onQuestionTap(questions[index]),
+                    ),
+                  ),
+                ),
+              );
+    }
+  }
+}
+
+class _QuestionsPlaceholder extends StatelessWidget {
+  const _QuestionsPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer(
+      enabled: true,
+      containersColor: Theme.of(context).scaffoldBackgroundColor,
+      child: SizedBox(
+        height: AppHeights.h164,
+        child: ListView.builder(
+          physics: const ClampingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (context, index) => Padding(
+            padding: EdgeInsets.only(right: AppWidths.w10),
+            child: Card(
+              child: SizedBox(
+                width: AppWidths.w240,
+                height: AppHeights.h164,
+                child: ListTile(
+                  title: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: AppHeights.h32),
+                      child: Text('Item number $index as title'),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-        );
-    }
+        ),
+      ),
+    );
   }
 }
 
@@ -159,7 +200,7 @@ class _Categories extends SubView<HomeController> {
       case HomeInitial():
         return const SizedBox.shrink();
       case HomeCategoriesLoading():
-        return const Center(child: CircularProgressIndicator());
+        return _CategoriesPlaceholder();
       case HomeCategoriesError():
         return const Center(child: Text('Error'));
       default:
@@ -182,5 +223,29 @@ class _Categories extends SubView<HomeController> {
           ),
         );
     }
+  }
+}
+
+class _CategoriesPlaceholder extends StatelessWidget {
+  const _CategoriesPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer(
+      enabled: true,
+      containersColor: Theme.of(context).scaffoldBackgroundColor,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: AppWidths.w16,
+          mainAxisSpacing: AppHeights.h16,
+        ),
+        itemCount: 6,
+        itemBuilder: (context, index) =>
+            Card(child: ListTile(title: Text('Item number $index as title'))),
+      ),
+    );
   }
 }

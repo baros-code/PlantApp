@@ -36,12 +36,7 @@ class QuestionCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: imageUri,
-                fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-              ),
+              CachedNetworkImage(imageUrl: imageUri, fit: BoxFit.cover),
               _TitleText(title),
             ],
           ),
