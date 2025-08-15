@@ -99,8 +99,8 @@ class AppTheme {
   static TextTheme _getTextTheme(Color textColor) => TextTheme(
     // Headline styles
     headlineLarge: TextStyle().copyWith(
-      fontSize: AppFontSizes.size32,
-      fontWeight: FontWeight.bold,
+      fontSize: AppFontSizes.size28,
+      fontWeight: FontWeight.w400,
       color: textColor,
     ),
     headlineMedium: TextStyle().copyWith(
@@ -139,6 +139,12 @@ class AppTheme {
       fontWeight: FontWeight.w600,
       color: textColor,
     ),
+    displaySmall: TextStyle().copyWith(
+      height: AppHeights.h22 / AppFontSizes.size16,
+      fontSize: AppFontSizes.size16,
+      fontWeight: FontWeight.w400,
+      color: textColor,
+    ),
     // Body styles
     bodyLarge: TextStyle().copyWith(
       height: 1,
@@ -168,6 +174,12 @@ class AppTheme {
       fontSize: AppFontSizes.size11,
       fontWeight: FontWeight.w400,
       color: textColor.withValues(alpha: 0.5),
+    ),
+    labelSmall: TextStyle().copyWith(
+      height: AppHeights.h15 / AppFontSizes.size11,
+      fontSize: AppFontSizes.size11,
+      fontWeight: FontWeight.w400,
+      color: textColor,
     ),
   ).apply(fontFamily: _defaultFontFamily);
 }

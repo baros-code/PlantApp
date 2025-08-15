@@ -58,12 +58,15 @@ class AppWidths {
   static double get w64 => 64.w;
   static double get w72 => 72.w;
   static double get w74 => 74.w;
+  static double get w132 => 132.w;
+  static double get w138 => 138.w;
   static double get w152 => 152.w;
   static double get w212 => 212.w;
   static double get w240 => 240.w;
   static double get w300 => 300.w;
   static double get w320 => 320.w;
   static double get w360 => 360.w;
+  static double get w380 => 380.w;
 }
 
 /// Height-based sizing (scales with screen height), generally used for icons.
@@ -113,6 +116,7 @@ class AppHeights {
   static double get h200 => 200.h;
   static double get h220 => 220.h;
   static double get h240 => 240.h;
+  static double get h500 => 500.h;
 }
 
 /// Font sizes (scales with text settings)
