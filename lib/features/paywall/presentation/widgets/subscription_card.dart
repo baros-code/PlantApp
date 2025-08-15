@@ -50,7 +50,19 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
             height: AppHeights.h64,
             padding: EdgeInsets.all(AppSizes.p14),
             decoration: BoxDecoration(
-              color: AppColors.white.withValues(alpha: 0.05),
+              gradient: _isSelected
+                  ? LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor.withValues(alpha: 0),
+                        Theme.of(context).primaryColor.withValues(alpha: 0.24),
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    )
+                  : null,
+              color: _isSelected
+                  ? null
+                  : AppColors.white.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(AppSizes.p14),
               border: Border.all(
                 color: _isSelected
@@ -68,6 +80,7 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
             ),
           ),
         ),
+
         if (widget.subscription.discountText != null)
           _DiscountLabel(widget.subscription.discountText!),
       ],
