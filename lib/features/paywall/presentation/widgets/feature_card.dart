@@ -25,7 +25,7 @@ class FeatureCard extends StatelessWidget {
         color: AppColors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppSizes.p14),
       ),
-      width: AppWidths.w155,
+      width: AppWidths.w138,
       height: AppHeights.h124,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
