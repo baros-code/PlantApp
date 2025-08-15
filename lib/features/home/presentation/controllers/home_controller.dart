@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_app/core/presentation/controller.dart';
-import 'package:plant_app/features/home/domain/entities/category.dart';
-import 'package:plant_app/features/home/domain/entities/question.dart';
-import 'package:plant_app/features/home/presentation/cubit/home_cubit.dart';
+
+import '../../../../core/presentation/controller.dart';
+import '../../../paywall/presentation/pages/paywall_page.dart';
+import '../../domain/entities/category.dart';
+import '../../domain/entities/question.dart';
+import '../cubit/home_cubit.dart';
 
 class HomeController extends Controller<Object> {
   HomeController(super.logger, super.popupManager);
@@ -18,6 +20,12 @@ class HomeController extends Controller<Object> {
     _homeCubit = context.read<HomeCubit>();
     _homeCubit.getQuestions();
     _homeCubit.getCategories();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    popupManager.showFullScreenPopup(context, PaywallPage());
   }
 
   void onSearchChanged(String value) {}

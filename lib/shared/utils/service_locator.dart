@@ -6,6 +6,7 @@ import 'package:plant_app/features/home/domain/usecases/get_categories.dart';
 import 'package:plant_app/features/home/domain/usecases/get_questions.dart';
 import 'package:plant_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:plant_app/features/onboarding/presentation/controllers/onboarding_controller.dart';
+import 'package:plant_app/features/paywall/presentation/controllers/paywall_controller.dart';
 
 import '../../core/network/api_manager.dart';
 import '../../core/network/connectivity_manager.dart';
@@ -52,7 +53,8 @@ abstract class ServiceLocator {
       ..registerLazySingleton(() => DiagnoseController(locator(), locator()))
       ..registerLazySingleton(() => ScanPlantController(locator(), locator()))
       ..registerLazySingleton(() => MyGardenController(locator(), locator()))
-      ..registerLazySingleton(() => ProfileController(locator(), locator()));
+      ..registerLazySingleton(() => ProfileController(locator(), locator()))
+      ..registerLazySingleton(() => PaywallController(locator(), locator()));
 
     // Register cubits
     locator.registerLazySingleton(() => HomeCubit(locator(), locator()));

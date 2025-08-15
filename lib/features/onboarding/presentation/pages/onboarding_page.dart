@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/features/onboarding/presentation/widgets/onboarding_page_view.dart';
+import 'package:plant_app/features/onboarding/presentation/widgets/title_with_brush_image.dart';
 
 import '../../../../core/presentation/controlled_view.dart';
 import '../../../../gen/assets.gen.dart';
@@ -22,7 +24,7 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
           bodyImage: Assets.images.onboarding.onboard1.path,
         ),
         OnboardingPageView(
-          title: _TitleWithBrushImage(
+          title: TitleWithBrushImage(
             prefixText: 'Take a photo to ',
             highlightedText: 'identify',
             suffixText: ' the plant!',
@@ -33,7 +35,7 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
           bodyImageTopOffset: AppHeights.h80,
         ),
         OnboardingPageView(
-          title: _TitleWithBrushImage(
+          title: TitleWithBrushImage(
             prefixText: 'Get plant ',
             highlightedText: 'care guides',
             brushOffset: -AppHeights.h10,
@@ -43,69 +45,7 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
       ],
       buttonTexts: ['Get Started', 'Continue', 'Continue'],
       widgetsBelowButton: [_TermsOfUseLabel(), null, null],
-      onComplete: () {},
-    );
-  }
-}
-
-class OnboardingPageView extends StatelessWidget {
-  const OnboardingPageView({
-    required this.title,
-    this.subTitle,
-    required this.bodyImage,
-    this.backgroundImage,
-    this.bodyImageWidth,
-    this.bodyImageTopOffset,
-    super.key,
-  });
-
-  final Widget title;
-  final String? subTitle;
-  final String bodyImage;
-  final String? backgroundImage;
-  final double? bodyImageWidth;
-  final double? bodyImageTopOffset;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        if (backgroundImage != null)
-          Image.asset(
-            backgroundImage!,
-            fit: BoxFit.fill,
-            width: double.infinity,
-            height: double.infinity,
-          ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(
-            AppWidths.w20,
-            AppHeights.h22,
-            AppWidths.w20,
-            0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(alignment: Alignment.centerLeft, child: title),
-              if (subTitle != null) ...[
-                SizedBox(height: AppHeights.h8),
-                Text(
-                  subTitle!,
-                  style: context.textTheme.displaySmall?.copyWith(
-                    color: AppColors.borderColor.withValues(alpha: 0.7),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-        Positioned(
-          top: bodyImageTopOffset,
-          child: Image.asset(bodyImage, width: bodyImageWidth),
-        ),
-      ],
+      onComplete: controller.onOnboardingComplete,
     );
   }
 }
@@ -128,51 +68,6 @@ class _WelcomeLabel extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _TitleWithBrushImage extends StatelessWidget {
-  const _TitleWithBrushImage({
-    required this.highlightedText,
-    this.prefixText,
-    this.suffixText,
-    this.brushOffset,
-  });
-
-  final String highlightedText;
-  final String? prefixText;
-  final String? suffixText;
-  final double? brushOffset;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        RichText(
-          text: TextSpan(
-            style: context.textTheme.headlineLarge,
-            children: [
-              TextSpan(text: prefixText),
-              TextSpan(
-                text: highlightedText,
-                style: context.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              TextSpan(text: suffixText),
-            ],
-          ),
-        ),
-        Positioned(
-          bottom: brushOffset,
-          right: 0,
-          child: SizedBox(
-            width: AppWidths.w132,
-            child: Image.asset(Assets.images.onboarding.onboardBrush.path),
-          ),
-        ),
-      ],
     );
   }
 }

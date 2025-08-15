@@ -42,7 +42,8 @@ class GradientTextSpan extends StatelessWidget {
   /// Gradient to apply across the entire composed text bounds.
   final Gradient gradient;
 
-  /// Inline spans similar to [TextSpan.children]. You can mix [TextSpan] and [WidgetSpan].
+  /// Inline spans similar to [TextSpan.children].
+  /// You can mix [TextSpan] and [WidgetSpan].
   final List<InlineSpan> children;
 
   final TextAlign textAlign;
