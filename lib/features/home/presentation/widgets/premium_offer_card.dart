@@ -19,6 +19,7 @@ class PremiumOfferCard extends StatelessWidget {
     final s1 = AppColors.premiumCardSubtitleColorFirst;
     final s2 = AppColors.premiumCardSubtitleColorSecond;
     return CustomCard(
+      onTap: onTap,
       padding: EdgeInsets.fromLTRB(
         AppWidths.w16,
         AppHeights.h12,

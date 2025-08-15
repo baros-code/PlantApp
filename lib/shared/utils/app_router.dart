@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/diagnose/presentation/pages/diagnose_page.dart';
 import '../../features/garden/presentation/pages/my_garden_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
@@ -16,8 +17,14 @@ class AppRouter {
 
   static final GoRouter _router = GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoute.onboarding.path,
+    initialLocation: AppRoute.splash.path,
     routes: [
+      // Splash
+      GoRoute(
+        path: AppRoute.splash.path,
+        name: AppRoute.splash.routeName,
+        builder: (context, state) => SplashPage(),
+      ),
       // Onboarding
       GoRoute(
         path: AppRoute.onboarding.path,
@@ -85,6 +92,7 @@ class AppRouter {
 }
 
 enum AppRoute {
+  splash('/splash', 'splash', 'Splash'),
   onboarding('/onboarding', 'onboarding', 'Onboarding'),
   home('/home', 'home', 'Home', tabIndex: 0),
   diagnose('/diagnose', 'diagnose', 'Diagnose', tabIndex: 1),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'core/network/api_manager.dart';
 import 'core/utils/logger.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
@@ -59,7 +60,10 @@ void _initializeDependencies() {
 }
 
 List<BlocProvider> _getCubitProviders() {
-  return [BlocProvider<HomeCubit>(create: (context) => locator<HomeCubit>())];
+  return [
+    BlocProvider<AuthCubit>(create: (context) => locator<AuthCubit>()),
+    BlocProvider<HomeCubit>(create: (context) => locator<HomeCubit>()),
+  ];
 }
 
 void _onFlutterError(FlutterErrorDetails details) {

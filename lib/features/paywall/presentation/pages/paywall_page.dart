@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/shared/presentation/pages/base_page.dart';
 
 import '../../../../core/presentation/controlled_view.dart';
 import '../../../../core/presentation/sub_view.dart';
@@ -9,7 +10,14 @@ class PaywallPage extends ControlledView<PaywallController, Object> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _PaywallSubView());
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          controller.setOnboardingSeen();
+        }
+      },
+      child: BasePage(body: _PaywallSubView()),
+    );
   }
 }
 

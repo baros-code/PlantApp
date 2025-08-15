@@ -1,4 +1,11 @@
 import 'package:get_it/get_it.dart';
+import 'package:plant_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:plant_app/features/auth/data/services/shared_preferences_manager.dart';
+import 'package:plant_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:plant_app/features/auth/domain/usecases/get_onboarding_seen.dart';
+import 'package:plant_app/features/auth/domain/usecases/set_onboarding_seen.dart';
+import 'package:plant_app/features/auth/presentation/controllers/splash_controller.dart';
+import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:plant_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:plant_app/features/home/data/services/home_remote_service.dart';
 import 'package:plant_app/features/home/domain/repositories/home_repository.dart';
@@ -32,22 +39,31 @@ abstract class ServiceLocator {
       );
 
     // Register repositories
+    locator.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(locator()),
+    );
     locator.registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(locator()),
     );
 
     // Register services
+    locator.registerLazySingleton<SharedPreferencesManager>(
+      SharedPreferencesManagerImpl.new,
+    );
     locator.registerLazySingleton<HomeRemoteService>(
       () => HomeRemoteServiceImpl(locator()),
     );
 
     // Register usecases
     locator
+      ..registerLazySingleton(() => GetOnboardingSeen(locator()))
+      ..registerLazySingleton(() => SetOnboardingSeen(locator()))
       ..registerLazySingleton(() => GetQuestions(locator()))
       ..registerLazySingleton(() => GetCategories(locator()));
 
     // Register controllers
     locator
+      ..registerLazySingleton(() => SplashController(locator(), locator()))
       ..registerLazySingleton(() => OnboardingController(locator(), locator()))
       ..registerLazySingleton(() => HomeController(locator(), locator()))
       ..registerLazySingleton(() => DiagnoseController(locator(), locator()))
@@ -57,6 +73,7 @@ abstract class ServiceLocator {
       ..registerLazySingleton(() => PaywallController(locator(), locator()));
 
     // Register cubits
+    locator.registerLazySingleton(() => AuthCubit(locator(), locator()));
     locator.registerLazySingleton(() => HomeCubit(locator(), locator()));
   }
 }
