@@ -28,10 +28,5 @@ class AuthCubit extends SafeCubit<AuthState> {
     emit(AuthOnboardingNotSeen());
   }
 
-  Future<void> setOnboardingSeen() async {
-    final result = await _setOnboardingSeen();
-    if (result.isSuccessful) {
-      emit(AuthOnboardingSeen());
-    }
-  }
+  Future<void> setOnboardingSeen() => _setOnboardingSeen();
 }

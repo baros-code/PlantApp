@@ -8,7 +8,7 @@ import '../cubit/auth_cubit.dart';
 class SplashController extends Controller<Object> {
   SplashController(super.logger, super.popupManager);
 
-  final Duration splashDuration = Duration(milliseconds: 1200);
+  Duration splashDuration = Duration(milliseconds: 1200);
 
   late AuthCubit _authCubit;
 
@@ -27,5 +27,10 @@ class SplashController extends Controller<Object> {
     } else {
       context.go(AppRoute.onboarding.path);
     }
+  }
+
+  // This is used only for unit testing.
+  void setSplashDuration(Duration duration) {
+    splashDuration = duration;
   }
 }
