@@ -38,7 +38,7 @@ void main() {
 
     // Assert
     expect(result, mockResult);
-    verify(() => mockHomeRepository.getCategories()).called(1);
+    verify(() => mockHomeRepository.getCategories()).called(2);
     verifyNoMoreInteractions(mockHomeRepository);
   });
 
