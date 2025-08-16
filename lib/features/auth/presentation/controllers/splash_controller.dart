@@ -8,22 +8,24 @@ import '../cubit/auth_cubit.dart';
 class SplashController extends Controller<Object> {
   SplashController(super.logger, super.popupManager);
 
+  final Duration splashDuration = Duration(milliseconds: 1200);
+
   late AuthCubit _authCubit;
 
   @override
   void onStart() async {
     super.onStart();
     _authCubit = context.read<AuthCubit>();
-    // Spend some time to show the logo.
-    await Future<void>.delayed(const Duration(seconds: 1));
+    // Spend some time to show the splash animation.
+    await Future<void>.delayed(splashDuration);
     _authCubit.checkOnboardingSeen();
   }
 
   void onAuthStateChanged(AuthState state) {
-    // if (state is AuthOnboardingSeen) {
-    //   context.go(AppRoute.home.path);
-    // } else {
-    //   context.go(AppRoute.onboarding.path);
-    // }
+    if (state is AuthOnboardingSeen) {
+      context.go(AppRoute.home.path);
+    } else {
+      context.go(AppRoute.onboarding.path);
+    }
   }
 }
