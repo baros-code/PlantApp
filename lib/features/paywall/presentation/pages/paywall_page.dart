@@ -43,6 +43,8 @@ class _PaywallView extends SubView<PaywallController> {
 
   @override
   Widget buildView(BuildContext context, PaywallController controller) {
+    final height = MediaQuery.of(context).size.height;
+    final isBigScreen = height > 900;
     return Stack(
       fit: StackFit.expand,
       alignment: Alignment.center,
@@ -51,7 +53,6 @@ class _PaywallView extends SubView<PaywallController> {
           top: 0,
           left: 0,
           right: 0,
-          bottom: AppHeights.h300,
           child: Image.asset(Assets.images.paywall.paywallBg.path),
         ),
         Positioned(
@@ -61,7 +62,8 @@ class _PaywallView extends SubView<PaywallController> {
         ),
         Positioned(
           left: AppWidths.w20,
-          top: AppHeights.h256,
+          // This check prevents terms & conditions from being cut off on big screens.
+          top: isBigScreen ? AppHeights.h200 : AppHeights.h256,
           right: AppWidths.w20,
           child: _PaywallBody(),
         ),

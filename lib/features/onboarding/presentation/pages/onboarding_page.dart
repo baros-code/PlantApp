@@ -15,6 +15,10 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    // This manual check is to ensure the image is not too big on big screens.
+    // It's preventing image overflow on iphone 16 pro/max and others.
+    final isBigScreen = height > 900;
     return MultiStepPage(
       pages: [
         OnboardingPageView(
@@ -31,7 +35,7 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
             brushOffset: AppHeights.h24,
           ),
           bodyImage: Assets.images.onboarding.onboard2.path,
-          bodyImageWidth: AppWidths.w360,
+          bodyImageWidth: isBigScreen ? AppWidths.w320 : AppWidths.w360,
           bodyImageTopOffset: AppHeights.h80,
         ),
         OnboardingPageView(
