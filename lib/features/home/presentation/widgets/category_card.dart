@@ -50,8 +50,14 @@ class CategoryCard extends StatelessWidget {
               CachedNetworkImage(
                 imageUrl: imageUri,
                 fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Card(
+                  child: Center(
+                    child: Icon(
+                      Icons.refresh,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
               ),
               _TitleText(title),
             ],
