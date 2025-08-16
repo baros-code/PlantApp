@@ -13,6 +13,7 @@ import '../controllers/onboarding_controller.dart';
 class OnboardingPage extends ControlledView<OnboardingController, Object> {
   OnboardingPage({super.key, super.params});
 
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
