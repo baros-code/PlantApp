@@ -19,6 +19,9 @@ class $AssetsIconsGen {
 
   /// Directory path: assets/icons/paywall
   $AssetsIconsPaywallGen get paywall => const $AssetsIconsPaywallGen();
+
+  /// Directory path: assets/icons/splash
+  $AssetsIconsSplashGen get splash => const $AssetsIconsSplashGen();
 }
 
 class $AssetsImagesGen {
@@ -102,6 +105,17 @@ class $AssetsIconsPaywallGen {
     fasterIcon,
     unlimitedIcon,
   ];
+}
+
+class $AssetsIconsSplashGen {
+  const $AssetsIconsSplashGen();
+
+  /// File path: assets/icons/splash/splash_logo.png
+  AssetGenImage get splashLogo =>
+      const AssetGenImage('assets/icons/splash/splash_logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [splashLogo];
 }
 
 class $AssetsImagesHomeGen {

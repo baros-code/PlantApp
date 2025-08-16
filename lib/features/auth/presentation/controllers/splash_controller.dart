@@ -8,12 +8,16 @@ import '../cubit/auth_cubit.dart';
 class SplashController extends Controller<Object> {
   SplashController(super.logger, super.popupManager);
 
+  final Duration splashDuration = Duration(milliseconds: 1200);
+
   late AuthCubit _authCubit;
 
   @override
-  void onStart() {
+  void onStart() async {
     super.onStart();
     _authCubit = context.read<AuthCubit>();
+    // Spend some time to show the splash animation.
+    await Future<void>.delayed(splashDuration);
     _authCubit.checkOnboardingSeen();
   }
 
