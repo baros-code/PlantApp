@@ -1,7 +1,10 @@
+// No direct Material imports needed here
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../core/presentation/controller.dart';
+import '../../../../shared/utils/app_router.dart';
 import '../../../paywall/presentation/pages/paywall_page.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
@@ -42,7 +45,13 @@ class HomeController extends Controller<Object> {
     popupManager.showFullScreenPopup(context, PaywallPage());
   }
 
-  void onQuestionTap(Question question) {}
+  void onQuestionTap(Question question) {
+    final encodedUrl = Uri.encodeComponent(question.uri);
+    final encodedTitle = Uri.encodeComponent(question.title);
+    context.push(
+      '${AppRoute.webview.path}?title=$encodedTitle&url=$encodedUrl',
+    );
+  }
 
   void onCategoryTap(Category category) {}
 }

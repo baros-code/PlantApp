@@ -11,6 +11,7 @@ import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/scan_plant/presentation/pages/scan_plant_page.dart';
 import '../presentation/pages/main_page.dart';
+import '../presentation/pages/webview_page.dart';
 import '../utils/service_locator.dart';
 
 class AppRouter {
@@ -94,6 +95,18 @@ class AppRouter {
         name: AppRoute.scanPlant.routeName,
         builder: (context, state) => ScanPlantPage(),
       ),
+      // WebView (generic)
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: AppRoute.webview.path,
+        name: AppRoute.webview.routeName,
+        builder: (context, state) {
+          final uri = state.uri;
+          final title = uri.queryParameters['title'] ?? '';
+          final url = uri.queryParameters['url'] ?? '';
+          return WebViewPage(title: title, url: url);
+        },
+      ),
     ],
   );
 }
@@ -105,7 +118,8 @@ enum AppRoute {
   diagnose('/diagnose', 'diagnose', 'Diagnose', tabIndex: 1),
   garden('/garden', 'garden', 'My Garden', tabIndex: 2),
   profile('/profile', 'profile', 'Profile', tabIndex: 3),
-  scanPlant('/scan_plant', 'scan_plant', 'Scan Plant');
+  scanPlant('/scan_plant', 'scan_plant', 'Scan Plant'),
+  webview('/webview', 'webview', 'WebView');
 
   const AppRoute(this.path, this.routeName, this.label, {this.tabIndex});
 
