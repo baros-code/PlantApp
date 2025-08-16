@@ -22,24 +22,27 @@ jobs:
       - run: flutter test
 
   build_ios:
-    name: Build Flutter (iOS)
-    needs: [flutter_test]
+    needs: flutter_test
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
-          java-version: "17.x"
-      - uses: subosito/flutter-action@v1
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          channel: stable
           flutter-version: '3.32.8'
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build ios --release --no-codesign
+      - run: flutter build ipa --no-codesign
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plant_app-ios
+          path: build/ios/ipa/*.ipa
 
-  build_appbundle:
-    name: Build Flutter (Android)
+  build_android:
+    name: Build Flutter (Android AAB + APK)
     needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
@@ -54,3 +57,17 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build appbundle
+      - run: flutter build apk --release
+      - name: Upload Android AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plant_app-android-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+      - name: Upload Android APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plant_app-android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+
+  
