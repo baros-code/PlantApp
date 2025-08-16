@@ -2,6 +2,13 @@
 
 A cross-platform Flutter app to identify and care for plants. It ships with a smooth onboarding, a home experience with bottom navigation, and a paywall for premium features. The app follows Clean Architecture with a feature-first structure, robust state management, strong theming, and CI-backed quality gates.
 
+## Testing the app
+- **Android**: Download the latest APK from the repository Releases page and install it on your device:
+  - Download APK (v1.0.0): [app-release.apk](https://github.com/baros-code/PlantApp/releases/download/v1.0.0/app-release.apk)
+  - Latest builds: [Releases](https://github.com/baros-code/PlantApp/releases)
+  - On your Android device, enable installing from unknown sources if prompted, then open the downloaded `app-release.apk`.
+- **iOS**: IPA builds require codesigning; build locally with Xcode.
+
 ## Main features
 - **Onboarding**: Guides first-time users through key value props with responsive visuals.
 
