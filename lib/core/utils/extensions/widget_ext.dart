@@ -13,17 +13,11 @@ extension WidgetExt on Widget {
       decoration: BoxDecoration(
         color: backgroundColor,
         border: isEnabled
-            ? Border.all(
-                width: width,
-                color: borderColor ?? Colors.black,
-              )
+            ? Border.all(width: width, color: borderColor ?? Colors.black)
             : null,
         borderRadius: radius,
       ),
-      child: Padding(
-        padding: padding ?? EdgeInsets.all(width),
-        child: this,
-      ),
+      child: Padding(padding: padding ?? EdgeInsets.all(width), child: this),
     );
   }
 }

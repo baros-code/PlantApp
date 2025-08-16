@@ -23,8 +23,8 @@ void main() {
   late AuthCubit authCubit;
 
   setUp(() {
-    // We cant use mock repository and usecases here because they are used in SplashController.
-    // So we need to register the real ones.
+    // We cant use mock repository and usecases here because
+    //they are used in SplashController. So we need to register the real ones.
     locator.registerLazySingleton<SharedPreferencesManager>(
       SharedPreferencesManagerImpl.new,
     );

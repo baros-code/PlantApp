@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:plant_app/gen/assets.gen.dart';
 import 'package:plant_app/shared/theme/app_sizes.dart';
 import 'package:plant_app/shared/utils/build_context_ext.dart';
 
 class TitleWithBrushImage extends StatelessWidget {
-  const TitleWithBrushImage({super.key, 
+  const TitleWithBrushImage({
+    super.key,
     required this.highlightedText,
     this.prefixText,
     this.suffixText,

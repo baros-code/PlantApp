@@ -14,18 +14,16 @@ class Result<TValue extends Object, TError extends Failure> extends Equatable {
   final TError? error;
 
   @protected
-  const Result.internal({
-    this.value,
-    this.error,
-  })  : assert(
-          TValue == Object || value != null || error != null,
-          'Either value or error should be provided or value to be omitted!',
-        ),
-        assert(
-          value == null || error == null,
-          'Both value and error cannot be provided!',
-        ),
-        isSuccessful = (TValue == Object && error == null) || value != null;
+  const Result.internal({this.value, this.error})
+    : assert(
+        TValue == Object || value != null || error != null,
+        'Either value or error should be provided or value to be omitted!',
+      ),
+      assert(
+        value == null || error == null,
+        'Both value and error cannot be provided!',
+      ),
+      isSuccessful = (TValue == Object && error == null) || value != null;
 
   factory Result.success({TValue? value}) => Result.internal(value: value);
 
@@ -42,7 +40,5 @@ class Failure extends Equatable {
   final String message;
 
   @override
-  List<Object?> get props => [
-        message,
-      ];
+  List<Object?> get props => [message];
 }

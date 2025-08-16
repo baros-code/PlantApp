@@ -18,8 +18,8 @@ class ControllerProvider<T extends Controller> extends InheritedWidget {
   }
 
   static T of<T extends Controller>(BuildContext context) {
-    final value =
-        context.getInheritedWidgetOfExactType<ControllerProvider<T>>();
+    final value = context
+        .getInheritedWidgetOfExactType<ControllerProvider<T>>();
 
     if (value == null) {
       throw ControllerNotFoundException(T, context.widget.runtimeType);

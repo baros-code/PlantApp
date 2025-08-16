@@ -1,5 +1,3 @@
-
-
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
@@ -206,14 +204,12 @@ Get APIs must have a response mapper provided if JSON is expected as a response!
       'Response mapper cannot be set if bytes is expected as a response!',
     );
   }
+
   // - Helpers
 }
 
 class ApiError extends Failure {
-  const ApiError._internal({
-    required this.errorType,
-    required super.message,
-  });
+  const ApiError._internal({required this.errorType, required super.message});
 
   /// Api error type generated out of api failures.
   final ApiErrorType errorType;
@@ -327,6 +323,7 @@ class ApiError extends Failure {
         return 'Unexpected error occurred.\n';
     }
   }
+
   // - Helpers
 }
 

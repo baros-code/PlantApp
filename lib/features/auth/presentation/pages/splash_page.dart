@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/presentation/controlled_view.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../shared/presentation/pages/base_page.dart';
-import '../../../../shared/theme/app_sizes.dart';
 import '../../../../shared/theme/app_colors.dart';
+import '../../../../shared/theme/app_sizes.dart';
 import '../controllers/splash_controller.dart';
 import '../cubit/auth_cubit.dart';
 
@@ -47,19 +47,19 @@ class _SplashViewState extends State<_SplashView>
 
   late final Animation<double> _logoFade = CurvedAnimation(
     parent: _controller,
-    curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+    curve: const Interval(0, 0.6, curve: Curves.easeOut),
   );
 
   late final Animation<double> _textFade = CurvedAnimation(
     parent: _controller,
-    curve: const Interval(0.4, 1.0, curve: Curves.easeOut),
+    curve: const Interval(0.4, 1, curve: Curves.easeOut),
   );
 
   late final Animation<Offset> _textSlide =
       Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero).animate(
         CurvedAnimation(
           parent: _controller,
-          curve: const Interval(0.4, 1.0, curve: Curves.easeOutCubic),
+          curve: const Interval(0.4, 1, curve: Curves.easeOutCubic),
         ),
       );
 

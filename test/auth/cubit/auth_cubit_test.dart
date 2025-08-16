@@ -64,7 +64,7 @@ void main() {
   );
 
   test(
-    'checkOnboardingSeen emits AuthOnboardingNotSeen when repo catches exception',
+    '''checkOnboardingSeen emits AuthOnboardingNotSeen when repo catches exception''',
     () async {
       when(() => mockGetOnboardingSeen()).thenAnswer(
         (_) async =>

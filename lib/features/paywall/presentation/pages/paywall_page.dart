@@ -62,7 +62,8 @@ class _PaywallView extends SubView<PaywallController> {
         ),
         Positioned(
           left: AppWidths.w20,
-          // This check prevents terms & conditions from being cut off on big screens.
+          // This check prevents terms & conditions
+          // from being cut off on big screens.
           top: isBigScreen ? AppHeights.h200 : AppHeights.h256,
           right: AppWidths.w20,
           child: _PaywallBody(),

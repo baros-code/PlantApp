@@ -27,9 +27,9 @@ class ConnectivityManagerImpl implements ConnectivityManager {
   void _startListeningConnectivityChanges() {
     _onConnectionChangedController = StreamController.broadcast();
 
-    Connectivity()
-        .onConnectivityChanged
-        .listen((List<ConnectivityResult> result) async {
+    Connectivity().onConnectivityChanged.listen((
+      List<ConnectivityResult> result,
+    ) async {
       if (!result.contains(ConnectivityResult.none)) {
         if (await _hasInternetConnection()) {
           _onConnectionChangedController.add(ConnectionResult.connected);
@@ -59,7 +59,4 @@ class ConnectivityManagerImpl implements ConnectivityManager {
   }
 }
 
-enum ConnectionResult {
-  connected,
-  disconnected,
-}
+enum ConnectionResult { connected, disconnected }

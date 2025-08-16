@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/diagnose/presentation/pages/diagnose_page.dart';
 import '../../features/garden/presentation/pages/my_garden_page.dart';
-import '../../features/home/presentation/pages/home_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/cubit/home_cubit.dart';
-import '../utils/service_locator.dart';
+import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/scan_plant/presentation/pages/scan_plant_page.dart';
 import '../presentation/pages/main_page.dart';
+import '../utils/service_locator.dart';
 
 class AppRouter {
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');

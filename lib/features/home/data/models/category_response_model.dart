@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'category_model.dart';
-import 'pagination_model.dart';
+
 import '../../domain/entities/category_response.dart';
 import '../../domain/entities/pagination.dart';
+import 'category_model.dart';
+import 'pagination_model.dart';
 
 part 'category_response_model.g.dart';
 

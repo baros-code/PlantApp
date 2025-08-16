@@ -26,10 +26,7 @@ abstract class ApiManager {
 
 /// ApiManager Implementation
 class ApiManagerImpl implements ApiManager {
-  ApiManagerImpl(
-    this._logger,
-    this._connectivityManager,
-  );
+  ApiManagerImpl(this._logger, this._connectivityManager);
 
   final _defaultTimeout = const Duration(milliseconds: 10000);
 
@@ -96,9 +93,7 @@ class ApiManagerImpl implements ApiManager {
       _validateResponseData(response, api.responseType);
       // Return result after mapping with the given mapper.
       if (api.responseType == ApiResponseType.json) {
-        return ApiResult.success(
-          value: api.responseMapper!(response.data),
-        );
+        return ApiResult.success(value: api.responseMapper!(response.data));
       }
       return ApiResult.success(value: response.data);
     } on Exception catch (ex) {
@@ -152,19 +147,15 @@ class ApiManagerImpl implements ApiManager {
         responseType: api.responseType == ApiResponseType.json
             ? ResponseType.json
             : api.responseType == ApiResponseType.bytes
-                ? ResponseType.bytes
-                : ResponseType.plain,
+            ? ResponseType.bytes
+            : ResponseType.plain,
       ),
       queryParameters: api.queryParams,
       cancelToken: cancelToken?.token,
     );
   }
 
-  void _logRequest(
-    String uuid,
-    ApiCall<dynamic> request,
-    bool canLogContent,
-  ) {
+  void _logRequest(String uuid, ApiCall<dynamic> request, bool canLogContent) {
     final method = request.method.name.toUpperCase();
     _logger.debug(
       '[$uuid] Request: $method ${request.path}',
@@ -182,8 +173,9 @@ class ApiManagerImpl implements ApiManager {
         );
       }
       // Log request body if provided.
-      final encodedBody =
-          request.body is Map ? jsonEncode(request.body) : request.body;
+      final encodedBody = request.body is Map
+          ? jsonEncode(request.body)
+          : request.body;
       if ((encodedBody is String || encodedBody is List) &&
           encodedBody.isNotEmpty) {
         _logger.debug(
@@ -232,7 +224,8 @@ class ApiManagerImpl implements ApiManager {
           _logger.error(message, callerType: runtimeType);
         },
         retries: retryCount,
-        retryDelays: retryDelays ??
+        retryDelays:
+            retryDelays ??
             const [
               Duration(seconds: 1),
               Duration(seconds: 2),
@@ -282,5 +275,6 @@ class ApiManagerImpl implements ApiManager {
     _onApiErrorController.add(apiError);
     return apiError;
   }
+
   // - Helpers
 }

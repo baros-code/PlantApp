@@ -52,5 +52,6 @@ class LoggerImpl implements Logger {
   String _getDateTime() {
     return DateFormat('dd.MM.yyyy HH:mm:ss:S').format(DateTime.now().toUtc());
   }
+
   // - Helpers
 }
