@@ -111,8 +111,12 @@ class $AssetsImagesHomeGen {
   AssetGenImage get homeHeader =>
       const AssetGenImage('assets/images/home/home_header.png');
 
+  /// File path: assets/images/home/home_header_no_bg.png
+  AssetGenImage get homeHeaderNoBg =>
+      const AssetGenImage('assets/images/home/home_header_no_bg.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [homeHeader];
+  List<AssetGenImage> get values => [homeHeader, homeHeaderNoBg];
 }
 
 class $AssetsImagesOnboardingGen {

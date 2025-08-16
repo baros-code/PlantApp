@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/presentation/controlled_view.dart';
@@ -8,12 +9,14 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../shared/presentation/pages/base_page.dart';
 import '../../../../shared/presentation/widgets/custom_search_bar.dart';
 import '../../../../shared/theme/app_sizes.dart';
+import '../../../../shared/theme/theme_provider.dart';
 import '../../../../shared/utils/build_context_ext.dart';
 import '../controllers/home_controller.dart';
 import '../cubit/home_cubit.dart';
 import '../widgets/category_card.dart';
 import '../widgets/premium_offer_card.dart';
 import '../widgets/question_card.dart';
+import '../widgets/theme_toggle.dart';
 
 class HomePage extends ControlledView<HomeController, Object> {
   HomePage({super.key, super.params});
@@ -58,15 +61,22 @@ class _HomeHeader extends SubView<HomeController> {
 
   @override
   Widget buildView(BuildContext context, HomeController controller) {
+    final isDarkMode = Provider.of<ThemeProvider>(
+      context,
+      listen: true,
+    ).isDarkMode;
     return Stack(
       children: [
         Positioned(
           bottom: -AppHeights.h10,
           child: Image.asset(
-            Assets.images.home.homeHeader.path,
+            isDarkMode
+                ? Assets.images.home.homeHeaderNoBg.path
+                : Assets.images.home.homeHeader.path,
             // This is actually the full width of the screen.
             width: AppWidths.w360,
             height: AppHeights.h200,
+            color: isDarkMode ? Theme.of(context).primaryColor : null,
           ),
         ),
         Padding(
@@ -95,6 +105,11 @@ class _HomeHeader extends SubView<HomeController> {
               SizedBox(height: AppHeights.h16),
             ],
           ),
+        ),
+        Positioned(
+          top: AppHeights.h16,
+          right: AppWidths.w16,
+          child: ThemeToggle(),
         ),
       ],
     );

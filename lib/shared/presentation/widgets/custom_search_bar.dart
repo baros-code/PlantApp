@@ -40,7 +40,7 @@ class CustomSearchBar extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: Colors.white.withValues(alpha: 0.92),
+        fillColor: Theme.of(context).cardTheme.color?.withValues(alpha: 0.92),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(AppSizes.p12),

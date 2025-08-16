@@ -42,9 +42,7 @@ class HomeController extends Controller<Object> {
     popupManager.showFullScreenPopup(context, PaywallPage());
   }
 
-  void onQuestionTap(Question question) {
-    // TODO(Baran): Implement question tap logic.
-  }
+  void onQuestionTap(Question question) {}
 
   void onCategoryTap(Category category) {}
 }

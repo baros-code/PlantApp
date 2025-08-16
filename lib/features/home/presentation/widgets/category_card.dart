@@ -39,7 +39,7 @@ class CategoryCard extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: Theme.of(context).cardTheme.color,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     width: AppWidths.w0_5,
@@ -82,7 +82,6 @@ class _TitleText extends StatelessWidget {
         child: Text(
           title,
           style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors.black,
             fontWeight: FontWeight.w500,
           ),
           maxLines: 2,
