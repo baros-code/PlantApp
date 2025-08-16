@@ -3,22 +3,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:plant_app/core/utils/result.dart';
-import 'package:plant_app/features/auth/domain/usecases/get_onboarding_seen.dart';
-import 'package:plant_app/features/auth/domain/usecases/set_onboarding_seen.dart';
 import 'package:plant_app/features/auth/presentation/cubit/auth_cubit.dart';
 
-class _MockGetOnboardingSeen extends Mock implements GetOnboardingSeen {}
-
-class _MockSetOnboardingSeen extends Mock implements SetOnboardingSeen {}
+import '../../helper.dart';
 
 void main() {
-  late _MockGetOnboardingSeen mockGetOnboardingSeen;
-  late _MockSetOnboardingSeen mockSetOnboardingSeen;
+  late MockGetOnboardingSeen mockGetOnboardingSeen;
+  late MockSetOnboardingSeen mockSetOnboardingSeen;
   late AuthCubit authCubit;
 
   setUp(() {
-    mockGetOnboardingSeen = _MockGetOnboardingSeen();
-    mockSetOnboardingSeen = _MockSetOnboardingSeen();
+    mockGetOnboardingSeen = MockGetOnboardingSeen();
+    mockSetOnboardingSeen = MockSetOnboardingSeen();
     authCubit = AuthCubit(mockGetOnboardingSeen, mockSetOnboardingSeen);
   });
 
