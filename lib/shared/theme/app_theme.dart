@@ -88,14 +88,14 @@ class AppTheme {
       color: AppColors.primary,
     ),
     searchBarTheme: SearchBarThemeData(
-      backgroundColor: WidgetStatePropertyAll(AppColors.white),
+      backgroundColor: WidgetStatePropertyAll(AppColors.grey),
     ),
     bottomAppBarTheme: BottomAppBarTheme(color: AppColors.primary),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.white,
     ),
-    cardTheme: CardThemeData(color: AppColors.black),
+    cardTheme: CardThemeData(color: AppColors.grey),
   );
 
   static TextTheme _getTextTheme(Color textColor) => TextTheme(

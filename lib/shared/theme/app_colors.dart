@@ -18,6 +18,7 @@ class AppColors {
 
   static const Color black = Colors.black;
   static const Color white = Colors.white;
+  static const Color grey = Color(0xFF1E1E1E);
 
   static const premiumCardColor = Color(0xFF24201A);
   static const premiumCardTitleColorFirst = Color(0xFFE5C990);

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
+import '../../theme/theme_provider.dart';
 import '../../utils/app_router.dart';
 
 class MainPage extends StatelessWidget {
@@ -128,7 +130,17 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? AppColors.primary : AppColors.iconSecondary;
+    final isDarkMode = Provider.of<ThemeProvider>(
+      context,
+      listen: true,
+    ).isDarkMode;
+    final color = selected
+        ? isDarkMode
+              ? AppColors.white
+              : AppColors.primary
+        : isDarkMode
+        ? AppColors.black
+        : AppColors.iconSecondary;
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -146,9 +158,9 @@ class _NavItem extends StatelessWidget {
             SizedBox(height: AppHeights.h5),
             Text(
               label,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: selected ? AppColors.primary : AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium?.copyWith(color: color),
             ),
           ],
         ),
