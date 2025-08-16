@@ -34,6 +34,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.6.0
   flutter_gen_runner: ^5.11.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -41,8 +42,18 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/icons/splash/
     - assets/icons/home/
     - assets/icons/paywall/
     - assets/images/onboarding/
     - assets/images/home/
     - assets/images/paywall/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icons/app_logo.png
+  adaptive_icon_background: "#28AF6E"
+  adaptive_icon_foreground: assets/icons/app_logo.png
+  remove_alpha_ios: true
+

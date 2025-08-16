@@ -11,17 +11,19 @@ class SplashController extends Controller<Object> {
   late AuthCubit _authCubit;
 
   @override
-  void onStart() {
+  void onStart() async {
     super.onStart();
     _authCubit = context.read<AuthCubit>();
+    // Spend some time to show the logo.
+    await Future<void>.delayed(const Duration(seconds: 1));
     _authCubit.checkOnboardingSeen();
   }
 
   void onAuthStateChanged(AuthState state) {
-    if (state is AuthOnboardingSeen) {
-      context.go(AppRoute.home.path);
-    } else {
-      context.go(AppRoute.onboarding.path);
-    }
+    // if (state is AuthOnboardingSeen) {
+    //   context.go(AppRoute.home.path);
+    // } else {
+    //   context.go(AppRoute.onboarding.path);
+    // }
   }
 }
