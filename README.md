@@ -1,11 +1,31 @@
 ## PlantApp
 
-A cross-platform Flutter app to identify and care for plants. It ships with a polished onboarding, a home experience with bottom navigation, and a paywall for premium features. The app follows Clean Architecture with a feature-first structure, robust state management, strong theming, and CI-backed quality gates.
+A cross-platform Flutter app to identify and care for plants. It ships with a smooth onboarding, a home experience with bottom navigation, and a paywall for premium features. The app follows Clean Architecture with a feature-first structure, robust state management, strong theming, and CI-backed quality gates.
 
-## Main flows
+## Main features
 - **Onboarding**: Guides first-time users through key value props with responsive visuals.
+
+  <p align="center">
+    <img alt="Onboarding" src="docs/screenshots/onboarding_ss.png" width="280" />
+  </p>
+
 - **Home**: Bottom navigation shell hosting core features (Diagnose, My Garden, Profile).
+
+  <p align="center">
+    <img alt="Home" src="docs/screenshots/home_ss.png" width="280" />
+  </p>
+
 - **Paywall**: Subscription screen highlighting premium feature set and plans.
+
+  <p align="center">
+    <img alt="Paywall" src="docs/screenshots/paywall_ss.png" width="280" />
+  </p>
+
+- **Dark theme**: Full support for light/dark modes with consistent tokens.
+
+  <p align="center">
+    <img alt="Dark theme" src="docs/screenshots/dark_theme_ss.png" width="280" />
+  </p>
 
 ## Tech highlights
 - **Pixel-perfect UI**: `flutter_screenutil` for responsive, device-consistent sizing.
