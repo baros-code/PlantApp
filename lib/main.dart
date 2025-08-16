@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plant_app/features/paywall/presentation/cubit/paywall_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import 'core/network/api_manager.dart';
 import 'core/utils/logger.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
-import 'features/home/presentation/cubit/home_cubit.dart';
-import 'features/paywall/presentation/cubit/paywall_cubit.dart';
 import 'shared/theme/theme_provider.dart';
 import 'shared/utils/app_constants.dart';
 import 'shared/utils/app_router.dart';
@@ -68,7 +67,6 @@ List<SingleChildWidget> _getProviders() {
   return [
     ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
     BlocProvider<AuthCubit>(create: (context) => locator<AuthCubit>()),
-    BlocProvider<HomeCubit>(create: (context) => locator<HomeCubit>()),
     BlocProvider<PaywallCubit>(create: (context) => locator<PaywallCubit>()),
   ];
 }
