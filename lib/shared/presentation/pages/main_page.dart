@@ -28,6 +28,7 @@ class MainPage extends StatelessWidget {
         padding: EdgeInsets.zero,
         height: AppHeights.h80,
         shape: const CircularNotchedRectangle(),
+        notchMargin: 0,
         child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border(
