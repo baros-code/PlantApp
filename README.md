@@ -4,7 +4,7 @@ A cross-platform Flutter app to identify and care for plants. It ships with a sm
 
 ## Testing the app
 - **Android**: Download the latest APK from the repository Releases page and install it on your device:
-  - Download APK (v1.0.0): [app-release.apk](https://github.com/baros-code/PlantApp/releases/download/v1.0.0/app-release.apk)
+  - Download APK (v1.0.1): [app-release.apk](https://github.com/baros-code/PlantApp/releases/download/v1.0.1/app-release.apk)
   - Latest builds: [Releases](https://github.com/baros-code/PlantApp/releases)
   - On your Android device, enable installing from unknown sources if prompted, then open the downloaded `app-release.apk`.
 - **iOS**: IPA builds require codesigning; build locally with Xcode.
