@@ -32,7 +32,8 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
             prefixText: 'Take a photo to ',
             highlightedText: 'identify',
             suffixText: ' the plant!',
-            brushOffset: AppHeights.h24,
+            brushOffsetRight: 0,
+            brushWidth: AppWidths.w138,
           ),
           bodyImage: Assets.images.onboarding.onboard2.path,
           bodyImageWidth: isBigScreen ? AppWidths.w320 : AppWidths.w360,
@@ -41,8 +42,9 @@ class OnboardingPage extends ControlledView<OnboardingController, Object> {
         OnboardingPageView(
           title: TitleWithBrushImage(
             prefixText: 'Get plant ',
-            highlightedText: 'care guides',
-            brushOffset: -AppHeights.h10,
+            highlightedText: 'care guides\n',
+            brushOffsetRight: AppWidths.w36,
+            brushWidth: AppWidths.w152,
           ),
           bodyImage: Assets.images.onboarding.onboard3.path,
         ),
